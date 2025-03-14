@@ -25,6 +25,9 @@ progress - Progress class; implements a basic timer object
 		display(self, title="", percentDisplay=True, rounding=2)
 		timeElapsed(self)
 
+plotting - includes some general plotting functions specific to my usecases
+	scatter2D(xData, yData, xLabel="xData", yLabel="yData", gridlines=True, markerArea = 12, markerWidth = 0.8)
+
 misc - Miscelaneous utilities
 	strLinesConcatenate(strList, current="")
 
@@ -34,5 +37,5 @@ Given it's current file location, it should be imported as:
 import os
 curDir = os.getcwd()
 os.chdir("/Users/nayandusoruth/Desktop/Y2Physics/GeneralUtilities")
-import misc
+import </insert module here/>
 os.chdir(curDir)
