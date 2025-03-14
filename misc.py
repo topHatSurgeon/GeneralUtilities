@@ -19,6 +19,3 @@ def strLinesConcatenate(strList, current=""):
         return '\n'.join([current, str(strList[0])])
     else:
         return '\n'.join([current, strLinesConcatenate(strList[1:],current=str(strList[0]))])
-    
-testArray = np.array(["entry 1", 2, "entry 3", True])
-print(strLinesConcatenate(testArray))
