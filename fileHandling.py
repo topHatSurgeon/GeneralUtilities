@@ -63,7 +63,7 @@ def saveFigure(directory, fileName, fig):
     os.chdir(directory)
 
     # save figure to folder
-    fig.savefig(fileName, dpi=300)
+    fig.savefig(fileName, dpi=300, bbox_inches='tight')
     
     # go back to original directory
     os.chdir(curDir)
