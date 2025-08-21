@@ -31,6 +31,9 @@ def IOfloat(text, default=0):
         return default
     return float(inp)
 
+
+
+
 def IOsaveTxT(text, fileName):
     """IO function - queries where to save textfile"""
     filepath = input("save txt to filepath: ")
@@ -46,7 +49,3 @@ def IOsaveFig(fig, fileName):
     filepath = input("save data to filepath: ")
     fh.saveFigure(filepath, fileName, fig)
     
-
-txt = "hello world"
-
-IOsaveTxT(txt, "test")

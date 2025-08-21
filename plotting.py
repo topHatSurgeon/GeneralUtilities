@@ -15,7 +15,7 @@ import pandas as pd
 Some general plotting functions using matplot lib
 """
 
-def scatter2D(xData, yData, xLabel="xData", yLabel="yData", gridlines=True, markerArea = 12, markerWidth = 0.8):
+def scatter2D(xData, yData, xLabel="xData", yLabel="yData", gridlines=True, markerArea = 12, markerWidth = 0.8, color = "k"):
     """Plotting function - simple scatter plot function for xData, yData - intended for quick barebones plotting"""
     # setup figure/axes
     fig = plt.figure()
@@ -31,7 +31,28 @@ def scatter2D(xData, yData, xLabel="xData", yLabel="yData", gridlines=True, mark
             
 
     # plot values
-    ax.scatter(xData, yData, marker = 'x', color="k", s=markerArea, linewidths=markerWidth)
+    ax.scatter(xData, yData, marker = 'x', color=color, s=markerArea, linewidths=markerWidth)
+     
+    # plot and return
+    plt.show()    
+    return fig
+
+def histogram(xData, bins = 10, label="data", gridlines=True, markerArea = 12, markerWidth = 0.8, color = "r"):
+    """Plotting function - simple scatter plot function for xData, yData - intended for quick barebones plotting"""
+    # setup figure/axes
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    
+    # title axes
+    ax.set_xlabel(label)
+    
+    # setup gridlines if desired
+    if(gridlines):
+        ax.grid(color='k', linestyle='-', linewidth=0.1)
+            
+
+    # plot values
+    ax.hist(xData, bins = bins, color=color)# s=markerArea, linewidths=markerWidth)
      
     # plot and return
     plt.show()    

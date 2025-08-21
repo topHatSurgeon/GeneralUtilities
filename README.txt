@@ -36,6 +36,6 @@ Given it's current file location, it should be imported as:
 
 import os
 curDir = os.getcwd()
-os.chdir("/Users/nayandusoruth/Desktop/Y2Physics/GeneralUtilities")
+os.chdir("/Users/nayandusoruth/Desktop/GeneralUtilities")
 import </insert module here/>
 os.chdir(curDir)
