@@ -10,167 +10,94 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
+import fileHandling
 
 """ Plotting functions
 Some general plotting functions using matplot lib
 """
-# new plotter function
+
 class plotter():
+    """Plotter class - acts as 'wrapper' to matplotlib fig/ax objects - intended to streamline plotting data"""
 # utility methods
-    # constructor method ----------------------------
-    def __init__(self, markWidth=0.8, markArea=12, gridCol='k', gridSty='-',gridWid=0.1):
+    # constructor method ---------------------------- </verified/>
+    def __init__(self, markerWidth=0.8, markerArea=12, gridColor='k', gridStyle='-',gridWidth=0.1, errCapsize=3, histWidth=0.5):
+        """Plotter object constructor - sets up fig/ax and standard formatting variables"""
         # setup figure/axes
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot()
         
         # setup standard formatting variables
-        self.markerWidth = markWidth
-        self.markerArea = markArea
+        self.markerWidth = markerWidth
+        self.markerArea = markerArea
         
-        self.gridColor = gridCol
-        self.gridStyle = gridSty
-        self.gridWidth = gridWid
+        self.gridColor = gridColor
+        self.gridStyle = gridStyle
+        self.gridWidth = gridWidth
         
-    # display figure method
+        self.errCapsize = errCapsize
+        
+        self.histWidth = histWidth
+    
+    # display figure method - </verified/>
     def display(self):
+        """Utility method - displays current figure"""
         plt.show()
         
-    # save figure method
+    # save figure method - </verified/>
+    def saveFig(self, directory, fileName):
+        """Utility method - Saves figure to directory/fileName.png"""
+        fileHandling.saveFigure(directory, fileName, self.fig)
         
 # figure "setup" methods ----------------------------
     
-    # axis labels method
+    # axis labels method - </verified/>
     def axisLabels(self, xLabel="xData", yLabel="yData"):
+        """Figure setup method - label axes on figure"""
         self.ax.set_xlabel(xLabel)
         self.ax.set_ylabel(yLabel)
         
-    # axis ticks methods
+    # axis ticks methods - </verified/>
     def axisTicks(self, xTicks, yTicks):
+        """Figure setup method - manually sets axis ticks with xTicks and yTicks"""
         # setup axis ticks
         self.ax.set_xticks(xTicks)
         self.ax.set_yticks(yTicks)
         
-    # gridline setup method
+    # gridline setup method - </verified/>
     def gridline(self):
+        """Figure setup method - sets gridlines"""
         self.ax.grid(color=self.gridColor, linestyle=self.gridStyle, linewidth=self.gridWidth)
-    # 
+    
+    # legend setup method - </verified/>
+    def legend(self, loc="upper right"):
+        """Figure setup method - applies a legend to location loc"""
+        plt.legend(loc=loc)
     
 # plotting methods ---------------------------------
 
-    # base scatter method
-    def scatter(self, xData, yData, marker = 'x', color='k'):
-        self.ax.scatter(xData, yData, marker = 'x', color=color, s=self.markerArea, linewidths=self.markerWidth)
+    # base scatter method - </verified/>
+    def scatter(self, xData, yData, marker = 'x', color='k', label=""):
+        """Plotting method - basic scatter plot between xData and yData"""
+        self.ax.scatter(xData, yData, marker = 'x', color=color, s=self.markerArea, linewidths=self.markerWidth, label=label)
     
-    # scatter w/yAxis errorbars method
+    # scatter w/yAxis errorbars method - </verified/>
+    def scatterYer(self, xData, yData, yErr, color='k', label=""):
+        """Plotting method - basic scatter plot between xData and yData with error in y yErr"""
+        self.ax.errorbar(xData, yData, marker = "", color=color, yerr=yErr, label=label, ls="", capsize=self.errCapsize)
     
-    # scatter w/xAxis errorbars method
+    # scatter w/xAxis errorbars method - </verified/>
+    def scatterXer(self, xData, yData, xErr, color='k', label=""):
+        """Plotting method - basic scatter plot between xData and yData with error in x xErr"""
+        self.ax.errorbar(xData, yData, marker = "", color=color, xerr=xErr, label=label, ls="", capsize=self.errCapsize)
     
-    # scatter w/xyAxis errorbars method
-    
-    # base histogram method
-    
-    # histogram w/yAxis errorbars method
+    # scatter w/xyAxis errorbars method - </verified/>
+    def scatterXYer(self, xData, yData, xErr, yErr, color='k', label=""):
+        """Plotting method - basic scatter plot between xData and yData with error in both x,y xrr, yErr"""
+        self.ax.errorbar(xData, yData, marker = "", color=color, yerr=yErr, xerr=xErr, label=label, ls="", capsize=self.errCapsize)
+        
+    # base histogram method - </verified/>
+    def histogram(self,xData, bins=10, color="r", label=""):
+        """Plotting method - basic histogram plot over xData"""
+        self.ax.hist(xData, bins = bins, color=color, label=label, rwidth=self.histWidth)
 
 
-
-
-
-
-
-def testing():
-    print("this works 3")
-
-
-# testing -----------------------------------------------------------------------------------------------------------------
-
-xTicks = np.arange(0, 10, 2)
-yTicks = np.arange(0,5,1)
-
-xData = np.arange(0, 10, 1)
-yData = np.arange(0, 5, 0.5)
-
-xDataErr = np.full(10, 0.25)
-yDataErr = np.full(10, 0.25)
-
-
-plotter = plotter()
-
-plotter.axisLabels()
-plotter.gridline()
-plotter.axisTicks(xTicks, yTicks)
-plotter.scatter(xData, yData)
-
-plotter.display()
-
-
-
-
-# old functions -----------------------------------------------------------------------------------------------------------------
-
-def scatter2D(xData, yData, xLabel="xData", yLabel="yData", gridlines=True, markerArea = 12, markerWidth = 0.8, color = "k"):
-    """Plotting function - simple scatter plot function for xData, yData - intended for quick barebones plotting"""
-    # setup figure/axes
-    fig = plt.figure()
-    ax = fig.add_subplot()
-    
-    # title axes
-    ax.set_xlabel(xLabel)
-    ax.set_ylabel(yLabel)
-    
-    # setup gridlines if desired
-    if(gridlines):
-        ax.grid(color='k', linestyle='-', linewidth=0.1)
-            
-
-    # plot values
-    ax.scatter(xData, yData, marker = 'x', color=color, s=markerArea, linewidths=markerWidth)
-     
-    # plot and return
-    plt.show()    
-    return fig
-
-def scatter2DTicks(xData, yData, xTicks, yTicks, xLabel="xData", yLabel="yData", gridlines=True, markerArea = 12, markerWidth = 0.8, color = "k"):
-    """Plotting function - simple scatter plot function for xData, yData - includes custom x/y axis ticks- intended for quick barebones plotting"""
-    # setup figure/axes
-    fig = plt.figure()
-    ax = fig.add_subplot()
-    
-    # title axes
-    ax.set_xlabel(xLabel)
-    ax.set_ylabel(yLabel)
-    
-    # setup gridlines if desired
-    if(gridlines):
-        ax.grid(color='k', linestyle='-', linewidth=0.1)
-            
-    # setup axis ticks
-    ax.set_xticks(xTicks)
-    ax.set_yticks(yTicks)
-
-    # plot values
-    ax.scatter(xData, yData, marker = 'x', color=color, s=markerArea, linewidths=markerWidth)
-     
-    # plot and return
-    plt.show()    
-    return fig
-
-def histogram(xData, bins = 10, label="data", gridlines=True, markerArea = 12, markerWidth = 0.8, color = "r"):
-    """Plotting function - simple scatter plot function for xData, yData - intended for quick barebones plotting"""
-    # setup figure/axes
-    fig = plt.figure()
-    ax = fig.add_subplot()
-    
-    # title axes
-    ax.set_xlabel(label)
-    
-    # setup gridlines if desired
-    if(gridlines):
-        ax.grid(color='k', linestyle='-', linewidth=0.1)
-            
-
-    # plot values
-    ax.hist(xData, bins = bins, color=color)# s=markerArea, linewidths=markerWidth)
-     
-    # plot and return
-    plt.show()    
-    return fig
