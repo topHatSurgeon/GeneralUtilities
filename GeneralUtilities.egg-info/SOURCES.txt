@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+GeneralUtilities/__init__.py
+GeneralUtilities/fileHandling.py
+GeneralUtilities/inputOutput.py
+GeneralUtilities/misc.py
+GeneralUtilities/plotting.py
+GeneralUtilities/progress.py
+GeneralUtilities.egg-info/PKG-INFO
+GeneralUtilities.egg-info/SOURCES.txt
+GeneralUtilities.egg-info/dependency_links.txt
+GeneralUtilities.egg-info/top_level.txt
