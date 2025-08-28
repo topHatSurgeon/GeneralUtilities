@@ -25,9 +25,4 @@ def convertStrDateTime(dateTimeStr):
     """utility function - converts 'dd/mm/yyyy hh:mm:ss' str to datetime object""" # - </Verified/>
     format = "%d/%m/%Y %H:%M:%S"
     dateTime = datetime.datetime.strptime(dateTimeStr, format)
-    print(dateTime)
-    print(type(dateTime))
-    
-    
-dateTimeStr = "10/08/2025 11:14:00"
-convertStrDateTime(dateTimeStr)
+    return dateTime
