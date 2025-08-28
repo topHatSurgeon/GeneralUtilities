@@ -31,11 +31,3 @@ plotting - includes some general plotting functions specific to my usecases
 misc - Miscelaneous utilities
 	strLinesConcatenate(strList, current="")
 
-
-Given it's current file location, it should be imported as:
-
-import os
-curDir = os.getcwd()
-os.chdir("/Users/nayandusoruth/Desktop/GeneralUtilities")
-import </insert module here/>
-os.chdir(curDir)
