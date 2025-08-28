@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
-import fileHandling
+import GeneralUtilities.fileHandling as fileHandling
 
 """ Plotting functions
 Some general plotting functions using matplot lib
