@@ -78,7 +78,7 @@ class plotter():
     # base scatter method - </verified/>
     def scatter(self, xData, yData, marker = 'x', color='k', label=""):
         """Plotting method - basic scatter plot between xData and yData"""
-        self.ax.scatter(xData, yData, marker = 'x', color=color, s=self.markerArea, linewidths=self.markerWidth, label=label)
+        self.ax.scatter(xData, yData, marker = marker, color=color, s=self.markerArea, linewidths=self.markerWidth, label=label)
     
     # scatter w/yAxis errorbars method - </verified/>
     def scatterYer(self, xData, yData, yErr, color='k', label=""):
