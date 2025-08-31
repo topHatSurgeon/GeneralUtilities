@@ -25,8 +25,27 @@ progress - Progress class; implements a basic timer object
 		display(self, title="", percentDisplay=True, rounding=2)
 		timeElapsed(self)
 
-plotting - includes some general plotting functions specific to my usecases
-	scatter2D(xData, yData, xLabel="xData", yLabel="yData", gridlines=True, markerArea = 12, markerWidth = 0.8)
+plotting - includes a plotter class which streamlines matplotlib figure generation
+	class plotter
+		__init__(self, markerWidth=0.8, markerArea=12, gridColor='k', gridStyle='-',gridWidth=0.1, errCapsize=3, histWidth=0.5)
+		display(self)
+		saveFig(self, directory, fileName)
+		
+		axisLabels(self, xLabel="xData", yLabel="yData")
+		axisTicks(self, xTicks, yTicks)
+		gridline(self)
+		legend(self, loc="upper right")
+		
+		scatter(self, xData, yData, marker = 'x', color='k', label="")
+		scatterYer(self, xData, yData, yErr, color='k', label="")
+		scatterXer(self, xData, yData, xErr, color='k', label="")
+		scatterXYer(self, xData, yData, xErr, yErr, color='k', label="")
+		histogram(self,xData, bins=10, color="r", label="")
+		
+EquationHandler - A module intended for symPy equation and expression handling
+	sumExpressions(expressions)
+	errorPropagationTerm(expression, variable)
+	errorPropagate(expression, returnSymbols=False)
 
 misc - Miscelaneous utilities
 	strLinesConcatenate(strList, current="")
