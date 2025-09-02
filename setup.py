@@ -22,7 +22,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Nayan Dusoruth",
-    packages=find_packages(include=["GeneralUtilities"]),
+    packages=find_packages(include=["NayanGeneralUtils"]),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
