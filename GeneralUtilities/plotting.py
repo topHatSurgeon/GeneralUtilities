@@ -11,6 +11,7 @@ import numpy as np
 import os
 import pandas as pd
 import GeneralUtilities.fileHandling as fileHandling
+import sympy as sy
 
 """ Plotting functions
 Some general plotting functions using matplot lib
@@ -47,7 +48,17 @@ class plotter():
     def saveFig(self, directory, fileName):
         """Utility method - Saves figure to directory/fileName.png"""
         fileHandling.saveFigure(directory, fileName, self.fig)
-        
+    
+    # get fig width method - </verified/>
+    def figWidth(self):
+        """Utility method - returns width of figure in pixels"""
+        return int(self.fig.get_figwidth() * self.fig.get_dpi())
+    
+    # get fig width method - </verified/>
+    def figHeight(self):
+        """Utility method - returns height of figure in pixels"""
+        return int(self.fig.get_figheight() * self.fig.get_dpi())
+    
 # figure "setup" methods ----------------------------
     
     # axis labels method - </verified/>
@@ -75,6 +86,18 @@ class plotter():
     
 # plotting methods ---------------------------------
 
+    # symPy expression plotting method  - </verified/>
+    def plotFunction(self, expression, xVariable, xLow, xHigh, color='k', label=""):
+        """Plotting method - basic sympy expression plotting over xVariable in [xLow, xHigh]"""
+        # convert to lambda function for evaluation purposes
+        lambdaExpression = sy.lambdify(xVariable, expression,modules=['numpy'])
+        
+        # evaluate expression over linspace
+        xData = np.linspace(xLow, xHigh, self.figWidth())
+        yData = lambdaExpression(xData)
+                
+        self.ax.plot(xData, yData, color=color, label=label)
+
     # base scatter method - </verified/>
     def scatter(self, xData, yData, marker = 'x', color='k', label=""):
         """Plotting method - basic scatter plot between xData and yData"""
@@ -99,5 +122,6 @@ class plotter():
     def histogram(self,xData, bins=10, color="r", label=""):
         """Plotting method - basic histogram plot over xData"""
         self.ax.hist(xData, bins = bins, color=color, label=label, rwidth=self.histWidth)
+
 
 

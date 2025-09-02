@@ -16,8 +16,8 @@ with open("requirements.txt") as f:
 
 
 setup(
-    name="GeneralUtilities",
-    version="1.2",
+    name="NayanGeneralUtils",
+    version="1.3",
     description="""A personal library of generally useful functions, methods and classes""",
     long_description=long_description,
     long_description_content_type="text/markdown",
